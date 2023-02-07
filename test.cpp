@@ -482,10 +482,161 @@ void Game_Control(vector<Character> all_characters, Gameboard gameboard, char tu
                 
             }
         }
+    
+    }
+    while(character.name == 'A'){
+        g_board[character.x_pos][character.y_pos] = '.';
+
+        if(command == "down"){
+            if(!stop(character, gameboard, 'd')){
+                char next = next_item(gameboard, character, 'd', all_characters);
+                if(next == ' '){
+                    character.move_down();
+                }
+                else if (next >= 48 && next <= 58 )
+                {
+                    //Alien hits a zombie
+                    Character victim;
+                    for(int i = 0; i < all_characters.size(); i++){
+                        if(all_characters[i].name == next){
+                            victim = all_characters[i];
+                            victim.gotHit(character.impact);
+                            if(victim.alive){
+                                cout << victim.name << " Got hit and survived!" << endl;
+                                break;
+                            }else{
+                                cout << victim.name << " was attacked and killed!" << endl;
+                                character.move_down();
+                            }
+                        }
+                    }
+                }
+                else if (next == '^')
+                {
+                    character.move_up();
+                    command = 'up';
+                }else if (next == 'v')
+                {
+                    character.move_up();
+                    command = 'down';
+                }else if (next == '>')
+                {
+                    character.move_up();
+                    command = 'right';
+                }
+                else if (next == '<')
+                {
+                    character.move_up();
+                    command = 'left';
+                }
+                
+                
+            }
+        }
         
     }
+    while(character.name == 'A'){
+        g_board[character.x_pos][character.y_pos] = '.';
 
+        if(command == "left"){
+            if(!stop(character, gameboard, 'l')){
+                char next = next_item(gameboard, character, 'l', all_characters);
+                if(next == ' '){
+                    character.move_left();
+                }
+                else if (next >= 48 && next <= 58 )
+                {
+                    //Alien hits a zombie
+                    Character victim;
+                    for(int i = 0; i < all_characters.size(); i++){
+                        if(all_characters[i].name == next){
+                            victim = all_characters[i];
+                            victim.gotHit(character.impact);
+                            if(victim.alive){
+                                cout << victim.name << " Got hit and survived!" << endl;
+                                break;
+                            }else{
+                                cout << victim.name << " was attacked and killed!" << endl;
+                                character.move_left();
+                            }
+                        }
+                    }
+                }
+                else if (next == '^')
+                {
+                    character.move_up();
+                    command = 'up';
+                }else if (next == 'v')
+                {
+                    character.move_up();
+                    command = 'down';
+                }else if (next == '>')
+                {
+                    character.move_up();
+                    command = 'right';
+                }
+                else if (next == '<')
+                {
+                    character.move_up();
+                    command = 'left';
+                }
+                
+                
+            }
+        }
+        
+    }
+    while(character.name == 'A'){
+        g_board[character.x_pos][character.y_pos] = '.';
 
+        if(command == "right"){
+            if(!stop(character, gameboard, 'r')){
+                char next = next_item(gameboard, character, 'r', all_characters);
+                if(next == ' '){
+                    character.move_right();
+                }
+                else if (next >= 48 && next <= 58 )
+                {
+                    //Alien hits a zombie
+                    Character victim;
+                    for(int i = 0; i < all_characters.size(); i++){
+                        if(all_characters[i].name == next){
+                            victim = all_characters[i];
+                            victim.gotHit(character.impact);
+                            if(victim.alive){
+                                cout << victim.name << " Got hit and survived!" << endl;
+                                break;
+                            }else{
+                                cout << victim.name << " was attacked and killed!" << endl;
+                                character.move_right();
+                            }
+                        }
+                    }
+                }
+                else if (next == '^')
+                {
+                    character.move_up();
+                    command = 'up';
+                }else if (next == 'v')
+                {
+                    character.move_up();
+                    command = 'down';
+                }else if (next == '>')
+                {
+                    character.move_up();
+                    command = 'right';
+                }
+                else if (next == '<')
+                {
+                    character.move_up();
+                    command = 'left';
+                }
+                
+                
+            }
+        }
+        
+    }
     
     while (a_ctrl == 0)
     {
@@ -763,7 +914,6 @@ main()
     for(int i = 0; i < all_characters.size(); i++){
         cout << all_characters[i].name << ": " << all_characters[i].life << endl;
     }
-
 
     gm.showGameboard();
 }
